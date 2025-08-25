@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Prediction - Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/02.webp' %}"); /* Your background image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            max-height: 80vh; /* Set a max height for the form */
+            overflow-y: auto; /* Enable scrolling if the form is too long */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Soil Moisture Prediction</h1>
+        <form method="POST" action="{% url 'output' %}">
+            {% csrf_token %}
+            <label for="N">Nitrogen (N):</label>
+            <input type="number" name="N" step="any" required><br>
+
+            <label for="P">Phosphorus (P):</label>
+            <input type="number" name="P" step="any" required><br>
+
+            <label for="K">Potassium (K):</label>
+            <input type="number" name="K" step="any" required><br>
+
+            <label for="temperature">Temperature:</label>
+            <input type="number" name="temperature" step="any" required><br>
+
+            <label for="humidity">Humidity:</label>
+            <input type="number" name="humidity" step="any" required><br>
+
+            <label for="ph">pH:</label>
+            <input type="number" name="ph" step="any" required><br>
+
+            <label for="rainfall">Rainfall:</label>
+            <input type="number" name="rainfall" step="any" required><br>
+
+            <!-- Algorithm Selection Dropdown -->
+            <label for="algorithm">Select Algorithm:</label>
+            <select name="algorithm" required>
+                <option value="cnn">CNN</option>
+                <option value="lstm">LSTM</option>
+                <option value="lgbm">LGBM</option>
+            </select><br>
+
+            <button type="submit">Predict</button>
+        </form>
+        <div class="footer">
+            <p>Powered by Soil Moisture Prediction System</p>
+        </div>
+    </div>
+</body>
+</html>

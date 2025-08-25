@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SOIL MOISTURE PREDICTION USING DEEP LEARNING TECHNIQUES</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .bgded {
+      background-image: url('{% static "images/01.jpg" %}');
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 2.5rem; /* Adjusted font size for better wrapping */
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Text shadow for better visibility */
+      margin-bottom: 30px;
+      line-height: 1.4; /* Improved line spacing for wrapped text */
+      max-width: 90%; /* Limit the width of the title to enforce wrapping */
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px; /* Space between form elements */
+    }
+
+    .input100 {
+      width: 300px; /* Fixed width for inputs */
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      background: white; /* White background for better readability */
+      color: black; /* Black text color */
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .view-password {
+      cursor: pointer;
+      color: #007bff;
+      font-size: 14px;
+      text-decoration: underline;
+      margin-top: -5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bgded">
+    <h3>
+      SOIL MOISTURE PREDICTION USING DEEP LEARNING TECHNIQUES
+    </h3>
+    <form action="input" method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+      {% csrf_token %}
+      <input class="input100" type="text" name="name" placeholder="Name" required>
+      <div style="position: relative;">
+        <input class="input100" id="password" type="password" name="password" placeholder="Password" required>
+        <span class="view-password" id="viewPassword" onclick="togglePassword()">View</span>
+      </div>
+      <button type="submit" class="btn">LOGIN</button>
+    </form>
+  </div>
+
+  <!-- JAVASCRIPTS -->
+  <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+  <script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+  <script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+
+  <script>
+    function togglePassword() {
+      var passwordField = document.getElementById('password');
+      var viewPasswordButton = document.getElementById('viewPassword');
+
+      // Change the input type to text to reveal the password
+      passwordField.type = 'text';
+      viewPasswordButton.innerText = 'Hide';
+
+      // After 5 seconds, revert back to password input type
+      setTimeout(function() {
+        passwordField.type = 'password';
+        viewPasswordButton.innerText = 'View';
+      }, 5000); // 5000ms = 2 seconds
+    }
+  </script>
+</body>
+</html>

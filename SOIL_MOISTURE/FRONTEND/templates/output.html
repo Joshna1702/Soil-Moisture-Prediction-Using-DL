@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Prediction Result</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/03.jpg' %}"); /* Set background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        .container { 
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background for the container */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 { 
+            font-size: 36px; 
+            color: #4CAF50; 
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .result { 
+            font-size: 32px; /* Increased text size for better visibility */
+            font-weight: bold;
+            color: #FFD700; /* Gold color for result */
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #282828; /* Dark background for result */
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predicted Soil Moisture is..</h1>
+        
+        <!-- Display the result based on the selected algorithm -->
+        {% if algorithm == 'cnn' %}
+            <p><strong></strong> <span class="result">{{ cnn_prediction }}</span></p>
+        {% elif algorithm == 'lstm' %}
+            <p><strong></strong> <span class="result">{{ lstm_prediction }}</span></p>
+        {% elif algorithm == 'lgbm' %}
+            <p><strong></strong> <span class="result">{{ lgbm_prediction }}</span></p>
+        {% else %}
+            <p>No algorithm selected.</p>
+        {% endif %}
+        
+        <a href="{% url 'home' %}">Go Back</a>
+    </div>
+</body>
+</html>
